@@ -16,12 +16,17 @@ class Scraper:
         except:
             posts = []
         text = ""
+        max_posts = 100
+        post_num = 0
         for p in posts:
             post = p.caption
             if post == None:
                 continue
             if(start not in post or stop not in post):
                 continue
+            post_num += 1
+            if(post_num > max_posts):
+                break
             if(len(start) > 1):
              post = post.split(start)[1]
             if(len(stop) > 1):
