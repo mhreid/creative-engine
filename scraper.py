@@ -1,6 +1,6 @@
 import requests
 import instaloader
-
+import string
 class Scraper:
     def __init__(self, username, start = '', stop = ''):
         if len(start) < 1:
@@ -26,9 +26,9 @@ class Scraper:
              post = post.split(start)[1]
             if(len(stop) > 1):
              post = post.split(stop)[0]
-            while(post[-1] == '\n'):
+            while(post[-1] == '\n' or post[-1] == ' '):
                 post = post[:-1]
-            if(post[-1] != '.' or post[-1] != '!'):
+            if(post[-1] not in string.punctuation):
                 post += '.'
             post += '\n'
             text +=  post
